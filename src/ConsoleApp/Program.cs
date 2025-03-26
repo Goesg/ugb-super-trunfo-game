@@ -30,4 +30,9 @@ public static class Program
     private static bool EstaEmEstadoDeEncerramento(){
         return EstadoDoJogo.Encerrado.Equals(_estadoJogo);
     }
+
+    private static void ExibirTelaInicial()
+    {
+        
+    }
 }
