@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj": {}
+    "/home/d1egoes/Practices/C-Sharp/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj": {}
   },
   "projects": {
-    "/workspaces/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj": {
+    "/home/d1egoes/Practices/C-Sharp/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj",
+        "projectUniqueName": "/home/d1egoes/Practices/C-Sharp/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj",
         "projectName": "TestConsoleApp",
-        "projectPath": "/workspaces/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/ugb-super-trunfo-game/tests/TestConsoleApp/obj/",
+        "projectPath": "/home/d1egoes/Practices/C-Sharp/ugb-super-trunfo-game/tests/TestConsoleApp/TestConsoleApp.csproj",
+        "packagesPath": "/home/d1egoes/.nuget/packages/",
+        "outputPath": "/home/d1egoes/Practices/C-Sharp/ugb-super-trunfo-game/tests/TestConsoleApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "/home/d1egoes/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/d1egoes/.local/share/mise/installs/dotnet-core/8.0.407/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
