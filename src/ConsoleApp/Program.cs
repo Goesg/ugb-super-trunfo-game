@@ -1,4 +1,5 @@
-﻿using ConsoleApp.Enum;
+﻿using ConsoleApp;
+using ConsoleApp.Enum;
 using Display;
 
 public static class Program
@@ -7,7 +8,8 @@ public static class Program
     private static readonly EstadoDoJogo _estadoInicialJogo = EstadoDoJogo.ExibirTelaInicial;
     private static EstadoDoJogo _estadoJogo = _estadoInicialJogo;
 
-    private static readonly TelaInicialDisplay _telaInicialDisplay = new TelaInicialDisplay();
+    private static readonly TelaInicialDisplay _telaInicialDisplay = new();
+    private static readonly Jogo _jogo = new();
 
     public static void Main(string[] args)
     {
@@ -19,7 +21,7 @@ public static class Program
                     ExibirTelaInicial();
                     break;
                 case EstadoDoJogo.EmExecucao:
-                    //TODO: implementar logica para rodar o jogo
+                    IniciarJogoSuperTrunfoUgb();
                     break;
             }
         }
@@ -52,6 +54,11 @@ public static class Program
                 break;
             }
         }
+    }
+
+    internal static void IniciarJogoSuperTrunfoUgb()
+    {
+        _jogo.Iniciar();
     }
 
     internal static void MudarEstadoJogoPara(EstadoDoJogo novoEstado)
