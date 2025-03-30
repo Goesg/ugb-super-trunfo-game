@@ -36,4 +36,24 @@ public class RenderizadorTabuleiro
         }
     }
 
+
+    public static void ShowInputOptions()
+    {
+        int x = 2;
+        int y = Console.WindowHeight - 4;
+        string[] options = {
+        "[1] Velocidade",
+        "[2] Potência",
+        "[3] Peso",
+        "[4] Sair"
+        };
+
+        for (int i = 0; i < options.Length; i++)
+        {
+            WriteAt(x, y - options.Length + i, options[i].PadRight(Console.WindowWidth - 4));
+        }
+
+        WriteAt(x, y + 1, "Escolha uma opção: ");
+    }
+
 }

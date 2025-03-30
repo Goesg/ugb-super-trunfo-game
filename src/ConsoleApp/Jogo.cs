@@ -8,10 +8,9 @@ namespace ConsoleApp
     public class Jogo
     {
 
-        private Jogador _jogador;
-        private Jogador _cpu;
+        private Jogador? _jogador;
+        private Jogador? _cpu;
         private readonly Random _random = new();
-
 
         private readonly TabuleiroJogoDisplay _tabuleiroJogoDisplay = ConstrutorDisplay.ConstrutirDisplayTabuleiro();
 
@@ -29,19 +28,32 @@ namespace ConsoleApp
                 ExecutarJogoSuperTrunfo();
             }
             while (JogoEstiverEmAndamento());
-
         }
 
         internal bool JogoEstiverEmAndamento()
         {
-            return _jogador.PossuiCartas() && _cpu.PossuiCartas();
+            return (_jogador != null && _cpu != null)
+            && (_jogador.PossuiCartas() && _cpu.PossuiCartas());
         }
 
 
         internal void ExecutarJogoSuperTrunfo()
         {
+            bool EhVezDoJogador = true;
+
             _tabuleiroJogoDisplay.ExibirNoConsole();
-            ConsoleKey teclaPressionada = Console.ReadKey(intercept: true).Key;
+            _tabuleiroJogoDisplay.ExibirPlacar(_jogador, _cpu);
+
+            var cartaJogador = _jogador.JogarCartaDoTopo();
+            var cartaCpu = _cpu.JogarCartaDoTopo();
+
+            _tabuleiroJogoDisplay.ExibirOpcoesAtributos();
+
+            if (EhVezDoJogador)
+            {
+                char inputKey = Console.ReadKey(intercept: true).KeyChar;
+                
+            }
         }
 
     }

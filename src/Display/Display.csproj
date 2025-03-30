@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="../Core/Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="ArquivosDisplay\logo-nome-jogo-ascii.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

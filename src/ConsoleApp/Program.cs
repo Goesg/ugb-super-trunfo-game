@@ -59,6 +59,7 @@ public static class Program
     internal static void IniciarJogoSuperTrunfoUgb()
     {
         _jogo.Iniciar();
+        _estadoJogo = EstadoDoJogo.Encerrado;
     }
 
     internal static void MudarEstadoJogoPara(EstadoDoJogo novoEstado)

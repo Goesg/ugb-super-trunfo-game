@@ -26,4 +26,19 @@ public class TabuleiroRegiaoConsole
         );
     }
 
+
+    public void ExibirPlacar(string textoPlacar)
+    {
+        RenderizadorTabuleiro.WriteAt
+        (
+            4, 1, textoPlacar
+        );
+    }
+
+    public void ExibirOpcoesAtributos()
+    {
+        RenderizadorTabuleiro.ShowInputOptions();
+    }
+    
+
 }
