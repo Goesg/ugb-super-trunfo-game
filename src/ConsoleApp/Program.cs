@@ -8,7 +8,7 @@ public static class Program
     private static readonly EstadoDoJogo _estadoInicialJogo = EstadoDoJogo.ExibirTelaInicial;
     private static EstadoDoJogo _estadoJogo = _estadoInicialJogo;
 
-    private static readonly TelaInicialDisplay _telaInicialDisplay = new();
+    private static readonly TelaInicialDisplay _telaInicialDisplay = ConstrutorDisplay.ConstrutirDisplayTelaInicial();
     private static readonly Jogo _jogo = new();
 
     public static void Main(string[] args)
@@ -40,7 +40,7 @@ public static class Program
     internal static void ExibirTelaInicial()
     {
         _telaInicialDisplay.ExibirNoConsole();
-        AguardarTeclaSerPressionadaEMudarEstadoJogo(ConsoleKey.Enter, EstadoDoJogo.ExibirTelaInicial);
+        AguardarTeclaSerPressionadaEMudarEstadoJogo(ConsoleKey.Enter, EstadoDoJogo.EmExecucao);
     }
 
     internal static void AguardarTeclaSerPressionadaEMudarEstadoJogo(ConsoleKey teclaEsperada, EstadoDoJogo novoEstado)
