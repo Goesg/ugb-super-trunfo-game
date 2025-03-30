@@ -23,6 +23,6 @@ public class TabuleiroJogoDisplay: Display
             regiao.ExibirNoConsole();
         }
 
-        Console.SetCursorPosition(9, Console.WindowHeight -2);
+        Console.CursorVisible = false;
     }
 }

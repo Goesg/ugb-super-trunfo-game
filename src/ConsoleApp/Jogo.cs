@@ -1,4 +1,5 @@
 using System;
+using Core;
 using Display;
 
 namespace ConsoleApp
@@ -7,23 +8,35 @@ namespace ConsoleApp
     public class Jogo
     {
 
+        private Jogador _jogador;
+        private Jogador _cpu;
+        private readonly Random _random = new();
+
+
         private readonly TabuleiroJogoDisplay _tabuleiroJogoDisplay = ConstrutorDisplay.ConstrutirDisplayTabuleiro();
 
         public void Iniciar()
         {
+            var baralho = new Baralho();
+            baralho.Embaralhar();
 
-            while (JogoEstiverEmAndamento())
+            var (cartasJogador, cartasCpu) = baralho.DistribuirEntreJogadores();
+            _jogador = new Jogador("Aluno UGB", cartasJogador);
+            _cpu = new Jogador("CPU", cartasCpu);
+
+            do
             {
                 ExecutarJogoSuperTrunfo();
             }
+            while (JogoEstiverEmAndamento());
 
         }
 
         internal bool JogoEstiverEmAndamento()
         {
-            //implementar a logica
-            return true;
+            return _jogador.PossuiCartas() && _cpu.PossuiCartas();
         }
+
 
         internal void ExecutarJogoSuperTrunfo()
         {
