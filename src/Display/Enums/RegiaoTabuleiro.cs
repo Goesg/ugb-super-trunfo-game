@@ -49,7 +49,7 @@ namespace Display.Enum
             .ComEspacosAEsqueda(0)
             .ComEspacosDoTopo(ObterAlturaConsole() - 9)
             .ComLargura(ObterLarguraConsole())
-            .ComAltura(6)
+            .ComAltura(7)
             .Build();
         }
     }

@@ -34,11 +34,6 @@ public class TabuleiroRegiaoConsole
             4, 1, textoPlacar
         );
     }
-
-    public void ExibirOpcoesAtributos()
-    {
-        RenderizadorTabuleiro.ShowInputOptions();
-    }
     
 
 }
