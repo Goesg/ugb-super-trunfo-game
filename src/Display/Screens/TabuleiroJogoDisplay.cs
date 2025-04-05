@@ -21,7 +21,17 @@ public class TabuleiroJogoDisplay : Display
         foreach (var regiao in _regioesTabuleiro.Values)
         {
             regiao.Coordenadas = regiao.Regiao.GerarCoordenadasEmTempoReal();
-            regiao.ExibirNoConsole();
+
+            if (RegiaoTabuleiro.AreaDoInput.Equals(regiao.Regiao))
+            {
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                regiao.ExibirNoConsole();
+                Console.BackgroundColor = ConsoleColor.DarkGray;
+            }
+            else regiao.ExibirNoConsole();
+
+
+
         }
 
         Console.CursorVisible = false;
@@ -50,13 +60,13 @@ public class TabuleiroJogoDisplay : Display
         int contentWidth = 24;
         string[] lines =
         {
-        "╔" + new string('═', contentWidth) + "╗",
-        $"║ Modelo: {Trunc(carta.Atributos.Modelo, contentWidth - 7)}".PadRight(contentWidth) + "║",
-        $"║ Velocidade: {carta.Atributos.VelocidadeMax} km/h".PadRight(contentWidth) + "║",
-        $"║ Potência: {carta.Atributos.Potencia} HP".PadRight(contentWidth) + "║",
-        $"║ Acelaração: {carta.Atributos.Aceleracao} seg - 100Km/h".PadRight(contentWidth) + "║",
-        $"║ Peso: {carta.Atributos.Peso} kg".PadRight(contentWidth) + "║",
-        "╚" + new string('═', contentWidth) + "╝"
+        "╔═",
+        $"║ Modelo: {carta.Atributos.Modelo}".PadRight(contentWidth),
+        $"║ Velocidade: {carta.Atributos.VelocidadeMax} km/h".PadRight(contentWidth),
+        $"║ Potência: {carta.Atributos.Potencia} HP".PadRight(contentWidth),
+        $"║ Acelaração: {carta.Atributos.Aceleracao} seg - 100Km/h".PadRight(contentWidth),
+        $"║ Peso: {carta.Atributos.Peso} kg".PadRight(contentWidth),
+        "╚═"
     };
 
         for (int i = 0; i < lines.Length; i++)
@@ -65,8 +75,16 @@ public class TabuleiroJogoDisplay : Display
         }
     }
 
-            private static string Trunc(string text, int maxLength)
-        {
-            return text.Length <= maxLength ? text : text.Substring(0, maxLength - 1) + "…";
-        }
+
+    public void ExibirCartarJogador(string cartaJogador)
+    {
+        RenderizadorTabuleiro.WriteAtV2InBlue(5, 4, cartaJogador);
+    }
+
+    public void ExibirCartarCpu(string cartaCpu)
+    {
+        int x = cartaCpu.Split('\n')[0].Length;
+        RenderizadorTabuleiro.WriteAtV2InRed(x + 10, 4, cartaCpu);
+    }
+
 }

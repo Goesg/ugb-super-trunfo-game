@@ -5,7 +5,6 @@ namespace Display;
 public class RenderizadorTabuleiro
 {
 
-
     public static void DrawBox(int x, int y, int width, int height, string? label = null)
     {
         string top = "╔" + new string('═', width - 2) + "╗";
@@ -36,6 +35,43 @@ public class RenderizadorTabuleiro
         }
     }
 
+    public static void WriteAtV2InBlue(int x, int y, string text)
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+
+        if (y >= 0 && y < Console.WindowHeight && x >= 0 && x < Console.WindowWidth)
+        {
+            string[] linhasDoTexto = text.Split('\n');
+
+            foreach (var linha in linhasDoTexto)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(linha);
+                y++; // para a próxima linha não sobrescrever a anterior
+            }
+        }
+
+                Console.ForegroundColor = ConsoleColor.White;
+    }
+
+        public static void WriteAtV2InRed(int x, int y, string text)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+
+        if (y >= 0 && y < Console.WindowHeight && x >= 0 && x < Console.WindowWidth)
+        {
+            string[] linhasDoTexto = text.Split('\n');
+
+            foreach (var linha in linhasDoTexto)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(linha);
+                y++; // para a próxima linha não sobrescrever a anterior
+            }
+        }
+
+                Console.ForegroundColor = ConsoleColor.White;
+    }
 
     public static void ShowInputOptions()
     {

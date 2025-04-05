@@ -15,7 +15,6 @@ public class TabuleiroRegiaoConsole
         Coordenadas = coordenadasConsole;
     }
 
-
     public void ExibirNoConsole()
     {
         RenderizadorTabuleiro.DrawBox(
@@ -25,7 +24,6 @@ public class TabuleiroRegiaoConsole
             Coordenadas.AreaConsole.Altura
         );
     }
-
 
     public void ExibirPlacar(string textoPlacar)
     {

@@ -17,6 +17,8 @@ namespace ConsoleApp
 
         public void Iniciar()
         {
+            Console.BackgroundColor = ConsoleColor.Black;
+
             var baralho = new Baralho();
             baralho.Embaralhar();
 
@@ -56,8 +58,26 @@ namespace ConsoleApp
 
             var cartaJogador = _jogador.JogarCartaDoTopo();
             var cartaCpu = _cpu.JogarCartaDoTopo();
-            
-            _tabuleiroJogoDisplay.ExibirCarta(cartaJogador);
+
+
+            var renderer = new AsciiCardRenderer();
+            string cartaDisplayJogador = renderer.RenderCard(
+                modelo: cartaJogador.Atributos.Modelo,
+                velocidade: cartaJogador.Atributos.VelocidadeMax.ToString(),
+                potencia: cartaJogador.Atributos.Potencia.ToString(),
+                peso: cartaJogador.Atributos.Peso.ToString()
+            );
+
+            string cartaDisplayCpu = renderer.RenderCard(
+            modelo: cartaCpu.Atributos.Modelo,
+            velocidade: cartaCpu.Atributos.VelocidadeMax.ToString(),
+            potencia: cartaCpu.Atributos.Potencia.ToString(),
+            peso: cartaCpu.Atributos.Peso.ToString()
+        );
+
+            _tabuleiroJogoDisplay.ExibirCartarJogador(cartaDisplayJogador);
+            _tabuleiroJogoDisplay.ExibirCartarCpu(cartaDisplayCpu);
+
             _tabuleiroJogoDisplay.ExibirOpcoesAtributos();
 
             if (EhVezDoJogador)

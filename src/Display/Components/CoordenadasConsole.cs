@@ -14,7 +14,7 @@ public class CoordenadasConsole
     {
         private int _cursorEspacosAEsquerda;
         private int _cursorEspacosDoTopo;
-        private int _largura;
+        private int _largura; 
         private int _altura;
 
         public CoordenadasConsoleBuilder ComEspacosAEsqueda(int cursorEspacosAEsquerda)
