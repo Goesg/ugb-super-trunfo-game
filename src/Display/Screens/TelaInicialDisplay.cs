@@ -19,6 +19,8 @@ public class TelaInicialDisplay: Display
             LimparTerminal();
             Console.WriteLine(nomeDoJogoEmAscii);
             Console.WriteLine(_fraseTelaInicial);
+            Console.BackgroundColor = GeradorDeCores.ObterCorDeFundoConsoleAleatoria();
+
         }
         catch (Exception e)
         {

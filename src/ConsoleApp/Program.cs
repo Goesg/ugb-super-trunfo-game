@@ -39,7 +39,6 @@ public static class Program
 
     internal static void ExibirTelaInicial()
     {
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
         _telaInicialDisplay.ExibirNoConsole();
         AguardarTeclaSerPressionadaEMudarEstadoJogo(ConsoleKey.Enter, EstadoDoJogo.EmExecucao);
     }
@@ -54,6 +53,7 @@ public static class Program
                 MudarEstadoJogoPara(novoEstado);
                 break;
             }
+            else _telaInicialDisplay.ExibirNoConsole();
         }
     }
 
