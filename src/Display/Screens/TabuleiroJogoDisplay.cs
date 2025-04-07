@@ -24,13 +24,9 @@ public class TabuleiroJogoDisplay : Display
 
             if (RegiaoTabuleiro.AreaDoInput.Equals(regiao.Regiao))
             {
-                Console.BackgroundColor = ConsoleColor.DarkYellow;
                 regiao.ExibirNoConsole();
-                Console.BackgroundColor = ConsoleColor.DarkGray;
             }
             else regiao.ExibirNoConsole();
-
-
 
         }
 

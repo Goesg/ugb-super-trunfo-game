@@ -76,7 +76,7 @@ public class RenderizadorTabuleiro
     public static void ShowInputOptions()
     {
         int x = 2;
-        int y = Console.WindowHeight - 3;
+        int y = Console.WindowHeight - 1;
         string[] options = {
         "[1] Velocidade Max",
         "[2] Potência",
