@@ -4,7 +4,7 @@ namespace Display.util
 {
     public class GeradorDeCores
     {
-        private static readonly ConsoleColor[] todasAsCores = new[]
+        private static readonly ConsoleColor[] _todasAsCores = new[]
          {
             ConsoleColor.Black,
             ConsoleColor.DarkBlue,
@@ -24,11 +24,24 @@ namespace Display.util
             ConsoleColor.White
         };
 
+                private static readonly ConsoleColor[] _coresTelaInicial = new[]
+         {
+            ConsoleColor.Black,
+            ConsoleColor.DarkBlue,
+            ConsoleColor.DarkCyan,
+            ConsoleColor.DarkRed,
+            ConsoleColor.DarkMagenta,
+            ConsoleColor.DarkYellow,
+            ConsoleColor.DarkGray,
+            ConsoleColor.Red,
+            ConsoleColor.Magenta,
+        };
+
         private static readonly Random _random = new();
 
         public static ConsoleColor ObterCorDeFundoConsoleAleatoria()
         {
-            return todasAsCores[_random.Next(todasAsCores.Length)];
+            return _coresTelaInicial[_random.Next(_coresTelaInicial.Length)];
         }
     }
 }
