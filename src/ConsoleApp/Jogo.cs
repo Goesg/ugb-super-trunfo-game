@@ -59,21 +59,9 @@ namespace ConsoleApp
             var cartaJogador = _jogador.JogarCartaDoTopo();
             var cartaCpu = _cpu.JogarCartaDoTopo();
 
-
             var renderer = new AsciiCardRenderer();
-            string cartaDisplayJogador = renderer.RenderCard(
-                modelo: cartaJogador.Atributos.Modelo,
-                velocidade: cartaJogador.Atributos.VelocidadeMax.ToString(),
-                potencia: cartaJogador.Atributos.Potencia.ToString(),
-                peso: cartaJogador.Atributos.Peso.ToString()
-            );
-
-            string cartaDisplayCpu = renderer.RenderCard(
-            modelo: cartaCpu.Atributos.Modelo,
-            velocidade: cartaCpu.Atributos.VelocidadeMax.ToString(),
-            potencia: cartaCpu.Atributos.Potencia.ToString(),
-            peso: cartaCpu.Atributos.Peso.ToString()
-        );
+            string cartaDisplayJogador = renderer.RenderCard(cartaJogador.Atributos);
+            string cartaDisplayCpu = renderer.RenderCard(cartaCpu.Atributos);
 
             _tabuleiroJogoDisplay.ExibirCartarJogador(cartaDisplayJogador);
             _tabuleiroJogoDisplay.ExibirCartarCpu(cartaDisplayCpu);

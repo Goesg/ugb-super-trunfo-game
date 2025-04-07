@@ -61,6 +61,7 @@ public class TabuleiroJogoDisplay : Display
         $"║ Velocidade: {carta.Atributos.VelocidadeMax} km/h".PadRight(contentWidth),
         $"║ Potência: {carta.Atributos.Potencia} HP".PadRight(contentWidth),
         $"║ Acelaração: {carta.Atributos.Aceleracao} seg - 100Km/h".PadRight(contentWidth),
+        $"║ Consumo: {carta.Atributos.Consumo} Km/l".PadRight(contentWidth),
         $"║ Peso: {carta.Atributos.Peso} kg".PadRight(contentWidth),
         "╚═"
     };
