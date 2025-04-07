@@ -60,11 +60,11 @@ namespace ConsoleApp
             var cartaCpu = _cpu.JogarCartaDoTopo();
 
             var renderer = new AsciiCardRenderer();
-            string cartaDisplayJogador = renderer.RenderCard(cartaJogador.Atributos);
-            string cartaDisplayCpu = renderer.RenderCard(cartaCpu.Atributos);
+            var (cartaDisplayJogador, carroDisplayJogador) = renderer.RenderCard(cartaJogador.Atributos);
+            var (cartaDisplayCpu, carroDisplayCpu) = renderer.RenderCard(cartaCpu.Atributos);
 
-            _tabuleiroJogoDisplay.ExibirCartarJogador(cartaDisplayJogador);
-            _tabuleiroJogoDisplay.ExibirCartarCpu(cartaDisplayCpu);
+            _tabuleiroJogoDisplay.ExibirCartarJogador(cartaDisplayJogador, carroDisplayJogador);
+            _tabuleiroJogoDisplay.ExibirCartarCpu(cartaDisplayCpu, carroDisplayCpu);
 
             _tabuleiroJogoDisplay.ExibirOpcoesAtributos();
 

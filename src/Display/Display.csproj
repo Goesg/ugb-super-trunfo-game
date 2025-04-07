@@ -13,6 +13,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
 
+    <None Update="ArquivosDisplay\carro-2-ascii.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+
+    <None Update="ArquivosDisplay\carro-3-ascii.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+
     <None Update="ArquivosDisplay\nome-desenvolvedores-ascii.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

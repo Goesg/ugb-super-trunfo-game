@@ -1,4 +1,5 @@
 using System;
+using Display.util;
 
 namespace Display;
 
@@ -51,10 +52,10 @@ public class RenderizadorTabuleiro
             }
         }
 
-                Console.ForegroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
-        public static void WriteAtV2InRed(int x, int y, string text)
+    public static void WriteAtV2InRed(int x, int y, string text)
     {
         Console.ForegroundColor = ConsoleColor.Red;
 
@@ -70,7 +71,26 @@ public class RenderizadorTabuleiro
             }
         }
 
-                Console.ForegroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+
+        public static void WriteAtV2WithRandomColor(int x, int y, string text)
+    {
+        Console.ForegroundColor = GeradorDeCores.ObterCorAleatoria();
+
+        if (y >= 0 && y < Console.WindowHeight && x >= 0 && x < Console.WindowWidth)
+        {
+            string[] linhasDoTexto = text.Split('\n');
+
+            foreach (var linha in linhasDoTexto)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(linha);
+                y++; // para a próxima linha não sobrescrever a anterior
+            }
+        }
+
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
     public static void ShowInputOptions()

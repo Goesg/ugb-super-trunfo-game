@@ -22,9 +22,11 @@ public class TelaInicialDisplay: Display
 
             LimparTerminal();
             RenderizadorTabuleiro.WriteAt(0, 2, nomeDoJogoEmAscii);
+            Console.ForegroundColor = GeradorDeCores.ObterCorAleatoria();
             RenderizadorTabuleiro.WriteAt(0, 12, carroEmAscii);
+            Console.ForegroundColor = ConsoleColor.White;
+
             Console.WriteLine(_fraseTelaInicial);
-            Console.BackgroundColor = GeradorDeCores.ObterCorDeFundoConsoleAleatoria();
 
         }
         catch (Exception e)

@@ -4,9 +4,8 @@ namespace Display.util
 {
     public class GeradorDeCores
     {
-        private static readonly ConsoleColor[] _todasAsCores = new[]
+        private static readonly ConsoleColor[] _coresCarroAscii = new[]
          {
-            ConsoleColor.Black,
             ConsoleColor.DarkBlue,
             ConsoleColor.DarkGreen,
             ConsoleColor.DarkCyan,
@@ -24,8 +23,8 @@ namespace Display.util
             ConsoleColor.White
         };
 
-                private static readonly ConsoleColor[] _coresTelaInicial = new[]
-         {
+        private static readonly ConsoleColor[] _coresTelaInicial = new[]
+ {
             ConsoleColor.Black,
             ConsoleColor.DarkBlue,
             ConsoleColor.DarkCyan,
@@ -42,6 +41,11 @@ namespace Display.util
         public static ConsoleColor ObterCorDeFundoConsoleAleatoria()
         {
             return _coresTelaInicial[_random.Next(_coresTelaInicial.Length)];
+        }
+
+        public static ConsoleColor ObterCorAleatoria()
+        {
+            return _coresCarroAscii[_random.Next(_coresCarroAscii.Length)];
         }
     }
 }

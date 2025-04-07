@@ -73,15 +73,21 @@ public class TabuleiroJogoDisplay : Display
     }
 
 
-    public void ExibirCartarJogador(string cartaJogador)
+    public void ExibirCartarJogador(string cartaJogador, string carroJogador)
     {
+        int y = cartaJogador.Split('\n').Length;
+
         RenderizadorTabuleiro.WriteAtV2InBlue(5, 4, cartaJogador);
+        RenderizadorTabuleiro.WriteAtV2WithRandomColor(5, y + 3, carroJogador);
     }
 
-    public void ExibirCartarCpu(string cartaCpu)
+    public void ExibirCartarCpu(string cartaCpu, string carroCpu)
     {
         int x = cartaCpu.Split('\n')[0].Length;
-        RenderizadorTabuleiro.WriteAtV2InRed(x + 10, 4, cartaCpu);
+        int y = cartaCpu.Split('\n').Length;
+
+        RenderizadorTabuleiro.WriteAtV2InRed(x + 100, 4, cartaCpu);
+        RenderizadorTabuleiro.WriteAtV2WithRandomColor(x + 100, y + 3, carroCpu);
     }
 
 }
