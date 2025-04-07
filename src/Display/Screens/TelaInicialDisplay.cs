@@ -8,10 +8,11 @@ public class TelaInicialDisplay: Display
 
     private readonly string _nomeArquivoTxtDoNomeDoJogoEmAscii = "logo-nome-jogo-ascii.txt";
     private readonly string _nomeArquivoTxtCarroEmAscii = "carro-ascii.txt";
+        private readonly string _nomeArquivoTxtPressioneEnterEmAscii = "texto-pressione-enter-ascii.txt";
+
 
     private readonly GerenciadorArquivos _gerenciadorArquivos = new ();
 
-    private readonly string _fraseTelaInicial = "\n\n\n\nPressione Enter para inicar...";
 
     public override void ExibirNoConsole()
     {
@@ -19,6 +20,7 @@ public class TelaInicialDisplay: Display
         {
             string nomeDoJogoEmAscii = _gerenciadorArquivos.ObterConteudoArquivoPorNome(_nomeArquivoTxtDoNomeDoJogoEmAscii);
             string carroEmAscii = _gerenciadorArquivos.ObterConteudoArquivoPorNome(_nomeArquivoTxtCarroEmAscii);
+            string textoPressioneEnter = _gerenciadorArquivos.ObterConteudoArquivoPorNome(_nomeArquivoTxtPressioneEnterEmAscii);
 
             LimparTerminal();
             RenderizadorTabuleiro.WriteAt(0, 2, nomeDoJogoEmAscii);
@@ -26,7 +28,7 @@ public class TelaInicialDisplay: Display
             RenderizadorTabuleiro.WriteAt(0, 12, carroEmAscii);
             Console.ForegroundColor = ConsoleColor.White;
 
-            Console.WriteLine(_fraseTelaInicial);
+            RenderizadorTabuleiro.WriteAt(0, carroEmAscii.Split('\n').Length + nomeDoJogoEmAscii.Split('\n').Length + 10, textoPressioneEnter);
 
         }
         catch (Exception e)

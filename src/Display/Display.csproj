@@ -24,6 +24,10 @@
     <None Update="ArquivosDisplay\nome-desenvolvedores-ascii.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+
+     <None Update="ArquivosDisplay\texto-pressione-enter-ascii.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>

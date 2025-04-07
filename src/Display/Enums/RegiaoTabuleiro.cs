@@ -47,9 +47,9 @@ namespace Display.Enum
             return new CoordenadasConsole
             .CoordenadasConsoleBuilder()
             .ComEspacosAEsqueda(0)
-            .ComEspacosDoTopo(ObterAlturaConsole() - 7)
+            .ComEspacosDoTopo(ObterAlturaConsole() - 8)
             .ComLargura(ObterLarguraConsole())
-            .ComAltura(7)
+            .ComAltura(8)
             .Build();
         }
     }

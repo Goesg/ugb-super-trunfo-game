@@ -26,7 +26,7 @@ namespace Display
             cartaDisplay.AppendLine(middleBorder);
             cartaDisplay.AppendLine($"| Velocidade:  {atributos.VelocidadeMax.ToString() + " km/h"}");
             cartaDisplay.AppendLine($"| Potência:  {atributos.Potencia.ToString() + " HP"}");
-            cartaDisplay.AppendLine($"| Acelaração:  {atributos.Aceleracao.ToString() + " seg - 100Km/h"}");
+            cartaDisplay.AppendLine($"| 0 - 100Km/h:  {atributos.Aceleracao.ToString() + " seg"}");
             cartaDisplay.AppendLine($"| Consumo:  {atributos.Consumo.ToString() + " Km/l"}");
             cartaDisplay.AppendLine($"| Peso:  {atributos.Peso.ToString() + " kg"}");
             cartaDisplay.AppendLine(bottomBorder);

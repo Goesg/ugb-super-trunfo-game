@@ -98,11 +98,12 @@ public class RenderizadorTabuleiro
         int x = 2;
         int y = Console.WindowHeight - 1;
         string[] options = {
-        "[1] Velocidade Max",
+        "[1] Velocidade",
         "[2] Potência",
-        "[3] Peso",
+        "[3] 0 a 100Km/h",
         "[4] Consumo",
-        "[5] Sair"
+        "[5] Peso",
+        "[6] Fechar Jogo"
         };
 
         for (int i = 0; i < options.Length; i++)
