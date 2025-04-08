@@ -6,33 +6,35 @@ namespace Display;
 public class RenderizadorTabuleiro
 {
 
-    public static void DrawBox(int x, int y, int width, int height, string? label = null)
+    public static void DesenharMoldura(CoordenadasConsole coordenadasConsole, string? texto = null)
     {
-        string top = "╔" + new string('═', width - 2) + "╗";
-        string bottom = "╚" + new string('═', width - 2) + "╝";
-        string side = "║" + new string(' ', width - 2) + "║";
+        string parteCimaMoldura = "╔" + new string('═', coordenadasConsole.ObterLargura() - 2) + "╗";
+        string lateralEsquerdaEDireitaMoldura = "║" + new string(' ', coordenadasConsole.ObterLargura() - 2) + "║";
+        string parteBaixaMoldura = "╚" + new string('═', coordenadasConsole.ObterLargura() - 2) + "╝";
 
-        if (!string.IsNullOrEmpty(label))
+        if (!string.IsNullOrEmpty(texto))
         {
-            string labelText = $" {label} ";
-            int padLeft = (width - 2 - labelText.Length) / 2;
-            top = "╔" + new string('═', padLeft) + labelText + new string('═', width - 2 - padLeft - labelText.Length) + "╗";
+            string labelText = $" {texto} ";
+            int padLeft = (coordenadasConsole.ObterLargura() - 2 - labelText.Length) / 2;
+            parteCimaMoldura = "╔" + new string('═', padLeft) + labelText + new string('═', coordenadasConsole.ObterLargura() - 2 - padLeft - labelText.Length) + "╗";
         }
 
-        WriteAt(x, y, top);
-        for (int i = 1; i < height - 1; i++)
+        ImprimirNaTela(parteCimaMoldura, coordenadasConsole.PosicaoInicialCursor);
+        for (int i = 1; i < coordenadasConsole.AreaOcupadaConsole.Altura - 1; i++)
         {
-            WriteAt(x, y + i, side);
+            coordenadasConsole.IncrementarEspacosDoTopo(1);
+            ImprimirNaTela(lateralEsquerdaEDireitaMoldura, coordenadasConsole.PosicaoCursor);
         }
-        WriteAt(x, y + height - 1, bottom);
+        coordenadasConsole.IncrementarEspacosDoTopoTemporariamente(coordenadasConsole.AreaOcupadaConsole.Altura - 1);
+        ImprimirNaTela(parteBaixaMoldura, coordenadasConsole.PosicaoCursor);
     }
 
-    public static void WriteAt(int x, int y, string text)
+    public static void ImprimirNaTela(string texto, PosicaoCursor posicaoCursor)
     {
-        if (y >= 0 && y < Console.WindowHeight && x >= 0 && x < Console.WindowWidth)
+        if (posicaoCursor.EspacosDoTopo >= 0 && posicaoCursor.EspacosDoTopo < Console.WindowHeight && posicaoCursor.EspacosAEsquerda >= 0 && posicaoCursor.EspacosAEsquerda < Console.WindowWidth)
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(text);
+            Console.SetCursorPosition(posicaoCursor.EspacosAEsquerda, posicaoCursor.EspacosDoTopo);
+            Console.Write(texto);
         }
     }
 
@@ -74,7 +76,7 @@ public class RenderizadorTabuleiro
         Console.ForegroundColor = ConsoleColor.White;
     }
 
-        public static void WriteAtV2WithRandomColor(int x, int y, string text)
+    public static void WriteAtV2WithRandomColor(int x, int y, string text)
     {
         Console.ForegroundColor = GeradorDeCores.ObterCorAleatoria();
 
@@ -108,7 +110,9 @@ public class RenderizadorTabuleiro
 
         for (int i = 0; i < options.Length; i++)
         {
-            WriteAt(x, y - options.Length + i, options[i].PadRight(Console.WindowWidth - 4));
+            var opcaoJogo = options[i].PadRight(Console.WindowWidth - 4); //vboltar aqui
+            var posicaoCursor = new PosicaoCursor(x, y - options.Length + i);
+            ImprimirNaTela(opcaoJogo, posicaoCursor);
         }
     }
 

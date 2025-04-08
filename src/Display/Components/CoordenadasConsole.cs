@@ -5,8 +5,11 @@ namespace Display;
 public class CoordenadasConsole
 {
 
+    public required PosicaoCursor PosicaoInicialCursor { get; init; }
+
     public required PosicaoCursor PosicaoCursor { get; init; }
-    public required AreaConsole AreaConsole { get; init; }
+
+    public required AreaConsole AreaOcupadaConsole { get; init; }
 
     public static CoordenadasConsoleBuilder Builder() => new();
 
@@ -14,7 +17,7 @@ public class CoordenadasConsole
     {
         private int _cursorEspacosAEsquerda;
         private int _cursorEspacosDoTopo;
-        private int _largura; 
+        private int _largura;
         private int _altura;
 
         public CoordenadasConsoleBuilder ComEspacosAEsqueda(int cursorEspacosAEsquerda)
@@ -45,10 +48,31 @@ public class CoordenadasConsole
         {
             return new CoordenadasConsole
             {
-                PosicaoCursor = new(_cursorEspacosAEsquerda, _cursorEspacosDoTopo),
-                AreaConsole = new(_largura, _altura)
+                PosicaoInicialCursor = new(_cursorEspacosAEsquerda, _cursorEspacosDoTopo),
+                PosicaoCursor =  new(_cursorEspacosAEsquerda, _cursorEspacosDoTopo),
+                AreaOcupadaConsole = new(_largura, _altura)
             };
         }
+    }
+
+    public int ObterLargura()
+    {
+        return AreaOcupadaConsole.Largura;
+    }
+
+    public int ObterAltura()
+    {
+        return AreaOcupadaConsole.Altura;
+    }
+
+    public void IncrementarEspacosDoTopo(int quantidade)
+    {
+        PosicaoCursor.EspacosDoTopo = (PosicaoCursor.EspacosDoTopo + quantidade);
+    }
+
+    public void IncrementarEspacosDoTopoTemporariamente(int quantidade)
+    {
+        PosicaoCursor.EspacosDoTopo = (PosicaoInicialCursor.EspacosDoTopo + quantidade);
     }
 
 }

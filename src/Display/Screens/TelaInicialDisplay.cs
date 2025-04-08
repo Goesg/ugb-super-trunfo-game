@@ -3,15 +3,15 @@ using Display.util;
 
 namespace Display;
 
-public class TelaInicialDisplay: Display
+public class TelaInicialDisplay : Display
 {
 
     private readonly string _nomeArquivoTxtDoNomeDoJogoEmAscii = "logo-nome-jogo-ascii.txt";
     private readonly string _nomeArquivoTxtCarroEmAscii = "carro-ascii.txt";
-        private readonly string _nomeArquivoTxtPressioneEnterEmAscii = "texto-pressione-enter-ascii.txt";
+    private readonly string _nomeArquivoTxtPressioneEnterEmAscii = "texto-pressione-enter-ascii.txt";
 
 
-    private readonly GerenciadorArquivos _gerenciadorArquivos = new ();
+    private readonly GerenciadorArquivos _gerenciadorArquivos = new();
 
 
     public override void ExibirNoConsole()
@@ -23,12 +23,13 @@ public class TelaInicialDisplay: Display
             string textoPressioneEnter = _gerenciadorArquivos.ObterConteudoArquivoPorNome(_nomeArquivoTxtPressioneEnterEmAscii);
 
             LimparTerminal();
-            RenderizadorTabuleiro.WriteAt(0, 2, nomeDoJogoEmAscii);
+            RenderizadorTabuleiro.ImprimirNaTela(nomeDoJogoEmAscii, new PosicaoCursor(espacosAEsquerda: 0, espacosDoTopo: 2));
             Console.ForegroundColor = GeradorDeCores.ObterCorAleatoria();
-            RenderizadorTabuleiro.WriteAt(0, 12, carroEmAscii);
+            RenderizadorTabuleiro.ImprimirNaTela(carroEmAscii, new PosicaoCursor(espacosAEsquerda: 0, espacosDoTopo: 12));
             Console.ForegroundColor = ConsoleColor.White;
 
-            RenderizadorTabuleiro.WriteAt(0, carroEmAscii.Split('\n').Length + nomeDoJogoEmAscii.Split('\n').Length + 10, textoPressioneEnter);
+
+            RenderizadorTabuleiro.ImprimirNaTela(textoPressioneEnter, new PosicaoCursor(espacosAEsquerda: 0, espacosDoTopo: carroEmAscii.Split('\n').Length + nomeDoJogoEmAscii.Split('\n').Length + 10));
 
         }
         catch (Exception e)

@@ -54,7 +54,7 @@ namespace ConsoleApp
             bool EhVezDoJogador = true;
 
             _tabuleiroJogoDisplay.ExibirNoConsole();
-            _tabuleiroJogoDisplay.ExibirPlacar(_jogador, _cpu);
+           TabuleiroJogoDisplay.ExibirPlacar(_jogador, _cpu);
 
             var cartaJogador = _jogador.JogarCartaDoTopo();
             var cartaCpu = _cpu.JogarCartaDoTopo();

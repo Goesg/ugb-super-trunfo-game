@@ -3,35 +3,21 @@ using Display.Enum;
 
 namespace Display;
 
-public class TabuleiroRegiaoConsole
+public class TabuleiroRegiaoConsole(RegiaoTabuleiro regiaoTabuleiro, CoordenadasConsole coordenadasRegiaoConsole)
 {
-    public RegiaoTabuleiro Regiao { get; }
+    public RegiaoTabuleiro Regiao { get; } = regiaoTabuleiro;
 
-    public CoordenadasConsole Coordenadas { get; set; }
-
-    public TabuleiroRegiaoConsole(RegiaoTabuleiro regiaoTabuleiro, CoordenadasConsole coordenadasConsole)
-    {
-        Regiao = regiaoTabuleiro;
-        Coordenadas = coordenadasConsole;
-    }
+    public CoordenadasConsole CoordenadasRegiao { get; set; } = coordenadasRegiaoConsole;
 
     public void ExibirNoConsole()
     {
-        RenderizadorTabuleiro.DrawBox(
-            Coordenadas.PosicaoCursor.EspacosAEsquerda,
-            Coordenadas.PosicaoCursor.EspacosDoTopo,
-            Coordenadas.AreaConsole.Largura,
-            Coordenadas.AreaConsole.Altura
-        );
+        RenderizadorTabuleiro.DesenharMoldura(CoordenadasRegiao);
     }
 
-    public void ExibirPlacar(string textoPlacar)
+    public static void ExibirPlacar(string textoPlacar)
     {
-        RenderizadorTabuleiro.WriteAt
-        (
-            4, 1, textoPlacar
-        );
+        RenderizadorTabuleiro.ImprimirNaTela(textoPlacar, new PosicaoCursor(4, 2));
     }
-    
+
 
 }

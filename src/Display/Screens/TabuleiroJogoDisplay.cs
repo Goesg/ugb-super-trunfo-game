@@ -20,20 +20,14 @@ public class TabuleiroJogoDisplay : Display
 
         foreach (var regiao in _regioesTabuleiro.Values)
         {
-            regiao.Coordenadas = regiao.Regiao.GerarCoordenadasEmTempoReal();
-
-            if (RegiaoTabuleiro.AreaDoInput.Equals(regiao.Regiao))
-            {
-                regiao.ExibirNoConsole();
-            }
-            else regiao.ExibirNoConsole();
-
+            regiao.CoordenadasRegiao = regiao.Regiao.GerarCoordenadasEmTempoReal();
+            regiao.ExibirNoConsole();
         }
 
         Console.CursorVisible = false;
     }
 
-    public void ExibirPlacar(Jogador? jogador, Jogador? cpu)
+    public static void ExibirPlacar(Jogador? jogador, Jogador? cpu)
     {
         if (jogador == null || cpu == null)
         {
@@ -43,7 +37,8 @@ public class TabuleiroJogoDisplay : Display
         string textoPlacar = $"Placar - {jogador.Nome}: {jogador.Cartas.Count} cartas  |  {cpu.Nome}: {cpu.Cartas.Count} cartas";
         var regiaoDoJogoConsole = _regioesTabuleiro.GetValueOrDefault(RegiaoTabuleiro.AreaDoJogo);
 
-        regiaoDoJogoConsole?.ExibirPlacar(textoPlacar);
+
+        TabuleiroRegiaoConsole.ExibirPlacar(textoPlacar);
     }
 
     public void ExibirOpcoesAtributos()
@@ -51,7 +46,7 @@ public class TabuleiroJogoDisplay : Display
         RenderizadorTabuleiro.ShowInputOptions();
     }
 
-    public void ExibirCarta(Carta carta)
+/*     public void ExibirCarta(Carta carta)
     {
         int contentWidth = 24;
         string[] lines =
@@ -68,9 +63,9 @@ public class TabuleiroJogoDisplay : Display
 
         for (int i = 0; i < lines.Length; i++)
         {
-            RenderizadorTabuleiro.WriteAt(2, 2 + i, lines[i]);
+            RenderizadorTabuleiro.ImprimirNaTela(2, 2 + i, lines[i]);
         }
-    }
+    } */
 
 
     public void ExibirCartarJogador(string cartaJogador, string carroJogador)
