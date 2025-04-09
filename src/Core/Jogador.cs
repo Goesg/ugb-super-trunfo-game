@@ -2,16 +2,10 @@ using System;
 
 namespace Core;
 
-public class Jogador
+public class Jogador(string nome, LinkedList<Carta> cartas)
 {
-    public string Nome { get; }
-    public LinkedList<Carta> Cartas { get; }
-
-    public Jogador(string nome, LinkedList<Carta> cartas)
-    {
-        Nome = nome;
-        Cartas = cartas;
-    }
+    public string Nome { get; } = nome;
+    public LinkedList<Carta> Cartas { get; } = cartas;
 
     public Carta JogarCartaDoTopo()
     {

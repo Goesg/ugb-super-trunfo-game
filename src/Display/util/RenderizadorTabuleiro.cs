@@ -5,6 +5,15 @@ namespace Display;
 
 public class RenderizadorTabuleiro
 {
+    public static void MoverCursorNoConsole(PosicaoCursor posicaoCursor)
+    {
+        Console.SetCursorPosition(posicaoCursor.EspacosAEsquerda, posicaoCursor.EspacosDoTopo);
+    }
+
+    public static void MudarCorDoTextoConsole(ConsoleColor cor)
+    {
+        Console.ForegroundColor = cor;
+    }
 
     public static void DesenharMoldura(CoordenadasConsole coordenadasDesenhoMoldura)
     {
@@ -27,66 +36,39 @@ public class RenderizadorTabuleiro
     {
         if (posicaoCursor.EspacosDoTopo >= 0 && posicaoCursor.EspacosDoTopo < Console.WindowHeight && posicaoCursor.EspacosAEsquerda >= 0 && posicaoCursor.EspacosAEsquerda < Console.WindowWidth)
         {
-            Console.SetCursorPosition(posicaoCursor.EspacosAEsquerda, posicaoCursor.EspacosDoTopo);
-            Console.Write(texto);
+            bool textoPossuiQuebraDeLinhas = texto.Contains('\n');
+
+            if (textoPossuiQuebraDeLinhas)
+            {
+                string[] linhasDoTexto = texto.Split('\n');
+
+                foreach (var linhaTexto in linhasDoTexto)
+                {
+                    MoverCursorNoConsole(posicaoCursor);
+                    Console.Write(linhaTexto);
+                    posicaoCursor.IncrementarEspacosDoTopo(1); // para a próxima linha do texto não sobrescrever a anterior
+                }
+            }
+            else
+            {
+                MoverCursorNoConsole(posicaoCursor);
+                Console.Write(texto);
+            }
         }
     }
 
-    public static void WriteAtV2InBlue(int x, int y, string text)
+    public static void ImprimirNaTelaComCor(string texto, PosicaoCursor posicaoCursor, ConsoleColor cor)
     {
-        Console.ForegroundColor = ConsoleColor.Blue;
-
-        if (y >= 0 && y < Console.WindowHeight && x >= 0 && x < Console.WindowWidth)
-        {
-            string[] linhasDoTexto = text.Split('\n');
-
-            foreach (var linha in linhasDoTexto)
-            {
-                Console.SetCursorPosition(x, y);
-                Console.Write(linha);
-                y++; // para a próxima linha não sobrescrever a anterior
-            }
-        }
-
-        Console.ForegroundColor = ConsoleColor.White;
+        MudarCorDoTextoConsole(cor);
+        ImprimirNaTela(texto, posicaoCursor);
+        MudarCorDoTextoConsole(ConsoleColor.White);
     }
 
-    public static void WriteAtV2InRed(int x, int y, string text)
+    public static void ImprimirNaTelaComCorAleatoria(string texto, PosicaoCursor posicaoCursor)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-
-        if (y >= 0 && y < Console.WindowHeight && x >= 0 && x < Console.WindowWidth)
-        {
-            string[] linhasDoTexto = text.Split('\n');
-
-            foreach (var linha in linhasDoTexto)
-            {
-                Console.SetCursorPosition(x, y);
-                Console.Write(linha);
-                y++; // para a próxima linha não sobrescrever a anterior
-            }
-        }
-
-        Console.ForegroundColor = ConsoleColor.White;
-    }
-
-    public static void WriteAtV2WithRandomColor(int x, int y, string text)
-    {
-        Console.ForegroundColor = GeradorDeCores.ObterCorAleatoria();
-
-        if (y >= 0 && y < Console.WindowHeight && x >= 0 && x < Console.WindowWidth)
-        {
-            string[] linhasDoTexto = text.Split('\n');
-
-            foreach (var linha in linhasDoTexto)
-            {
-                Console.SetCursorPosition(x, y);
-                Console.Write(linha);
-                y++; // para a próxima linha não sobrescrever a anterior
-            }
-        }
-
-        Console.ForegroundColor = ConsoleColor.White;
+        MudarCorDoTextoConsole(GeradorDeCores.ObterCorAleatoria());
+        ImprimirNaTela(texto, posicaoCursor);
+        MudarCorDoTextoConsole(ConsoleColor.White);
     }
 
     public static void ShowInputOptions()

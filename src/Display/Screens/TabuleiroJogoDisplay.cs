@@ -46,34 +46,12 @@ public class TabuleiroJogoDisplay : Display
         RenderizadorTabuleiro.ShowInputOptions();
     }
 
-/*     public void ExibirCarta(Carta carta)
-    {
-        int contentWidth = 24;
-        string[] lines =
-        {
-        "╔═",
-        $"║ Modelo: {carta.Atributos.Modelo}".PadRight(contentWidth),
-        $"║ Velocidade: {carta.Atributos.VelocidadeMax} km/h".PadRight(contentWidth),
-        $"║ Potência: {carta.Atributos.Potencia} HP".PadRight(contentWidth),
-        $"║ Acelaração: {carta.Atributos.Aceleracao} seg - 100Km/h".PadRight(contentWidth),
-        $"║ Consumo: {carta.Atributos.Consumo} Km/l".PadRight(contentWidth),
-        $"║ Peso: {carta.Atributos.Peso} kg".PadRight(contentWidth),
-        "╚═"
-    };
-
-        for (int i = 0; i < lines.Length; i++)
-        {
-            RenderizadorTabuleiro.ImprimirNaTela(2, 2 + i, lines[i]);
-        }
-    } */
-
-
     public void ExibirCartarJogador(string cartaJogador, string carroJogador)
     {
         int y = cartaJogador.Split('\n').Length;
 
-        RenderizadorTabuleiro.WriteAtV2InBlue(5, 4, cartaJogador);
-        RenderizadorTabuleiro.WriteAtV2WithRandomColor(5, y + 3, carroJogador);
+        RenderizadorTabuleiro.ImprimirNaTelaComCor(cartaJogador, new PosicaoCursor(5, 4), ConsoleColor.Blue);
+        RenderizadorTabuleiro.ImprimirNaTelaComCorAleatoria(carroJogador, new PosicaoCursor(5, y + 3));
     }
 
     public void ExibirCartarCpu(string cartaCpu, string carroCpu)
@@ -81,8 +59,8 @@ public class TabuleiroJogoDisplay : Display
         int x = cartaCpu.Split('\n')[0].Length;
         int y = cartaCpu.Split('\n').Length;
 
-        RenderizadorTabuleiro.WriteAtV2InRed(x + 100, 4, cartaCpu);
-        RenderizadorTabuleiro.WriteAtV2WithRandomColor(x + 100, y + 3, carroCpu);
+        RenderizadorTabuleiro.ImprimirNaTelaComCor(cartaCpu, new PosicaoCursor(x + 100, 4), ConsoleColor.Red);
+        RenderizadorTabuleiro.ImprimirNaTelaComCorAleatoria(carroCpu, new PosicaoCursor(x + 100, y + 3));
     }
 
 }
