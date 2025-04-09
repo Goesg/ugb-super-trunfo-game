@@ -6,27 +6,21 @@ namespace Display;
 public class RenderizadorTabuleiro
 {
 
-    public static void DesenharMoldura(CoordenadasConsole coordenadasConsole, string? texto = null)
+    public static void DesenharMoldura(CoordenadasConsole coordenadasDesenhoMoldura)
     {
-        string parteCimaMoldura = "╔" + new string('═', coordenadasConsole.ObterLargura() - 2) + "╗";
-        string lateralEsquerdaEDireitaMoldura = "║" + new string(' ', coordenadasConsole.ObterLargura() - 2) + "║";
-        string parteBaixaMoldura = "╚" + new string('═', coordenadasConsole.ObterLargura() - 2) + "╝";
+        string parteCimaMoldura = "╔" + new string('═', coordenadasDesenhoMoldura.ObterLargura() - 2) + "╗";
+        string lateralEsquerdaEDireitaMoldura = "║" + new string(' ', coordenadasDesenhoMoldura.ObterLargura() - 2) + "║";
+        string parteBaixaMoldura = "╚" + new string('═', coordenadasDesenhoMoldura.ObterLargura() - 2) + "╝";
 
-        if (!string.IsNullOrEmpty(texto))
-        {
-            string labelText = $" {texto} ";
-            int padLeft = (coordenadasConsole.ObterLargura() - 2 - labelText.Length) / 2;
-            parteCimaMoldura = "╔" + new string('═', padLeft) + labelText + new string('═', coordenadasConsole.ObterLargura() - 2 - padLeft - labelText.Length) + "╗";
-        }
+        ImprimirNaTela(parteCimaMoldura, coordenadasDesenhoMoldura.PosicaoInicialCursor);
 
-        ImprimirNaTela(parteCimaMoldura, coordenadasConsole.PosicaoInicialCursor);
-        for (int i = 1; i < coordenadasConsole.AreaOcupadaConsole.Altura - 1; i++)
+        for (int i = 0; i < coordenadasDesenhoMoldura.AreaOcupadaConsole.Altura; i++)
         {
-            coordenadasConsole.IncrementarEspacosDoTopo(1);
-            ImprimirNaTela(lateralEsquerdaEDireitaMoldura, coordenadasConsole.PosicaoCursor);
+            coordenadasDesenhoMoldura.IncrementarEspacosDoTopo(1);
+            ImprimirNaTela(lateralEsquerdaEDireitaMoldura, coordenadasDesenhoMoldura.PosicaoCursor);
         }
-        coordenadasConsole.IncrementarEspacosDoTopoTemporariamente(coordenadasConsole.AreaOcupadaConsole.Altura - 1);
-        ImprimirNaTela(parteBaixaMoldura, coordenadasConsole.PosicaoCursor);
+        coordenadasDesenhoMoldura.IncrementarEspacosDoTopoTemporariamente(coordenadasDesenhoMoldura.AreaOcupadaConsole.Altura - 1);
+        ImprimirNaTela(parteBaixaMoldura, coordenadasDesenhoMoldura.PosicaoCursor);
     }
 
     public static void ImprimirNaTela(string texto, PosicaoCursor posicaoCursor)
