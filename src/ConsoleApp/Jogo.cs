@@ -8,12 +8,13 @@ namespace ConsoleApp
     public class Jogo
     {
 
-        private Jogador? _jogador;
-        private Jogador? _cpu;
+        private Jogador _jogador;
+        private Jogador _cpu;
         private bool _opcaoDeSairSelecionado = false;
         private readonly Random _random = new();
 
         private readonly TabuleiroJogoDisplay _tabuleiroJogoDisplay = ConstrutorDisplay.ConstrutirDisplayTabuleiro();
+        private readonly GeradorImagemAscii _geradorImagemAscii = new();
 
         public void Iniciar()
         {
@@ -53,18 +54,14 @@ namespace ConsoleApp
         {
             bool EhVezDoJogador = true;
 
-            _tabuleiroJogoDisplay.ExibirNoConsole();
-           TabuleiroJogoDisplay.ExibirPlacar(_jogador, _cpu);
+            DesenharTelaDoJogo();
 
             var cartaJogador = _jogador.JogarCartaDoTopo();
             var cartaCpu = _cpu.JogarCartaDoTopo();
 
-            var renderer = new AsciiCardRenderer();
-            var (cartaDisplayJogador, carroDisplayJogador) = renderer.RenderCard(cartaJogador.Atributos);
-            var (cartaDisplayCpu, carroDisplayCpu) = renderer.RenderCard(cartaCpu.Atributos);
+            DesenharCartaComCarroDoJogador(cartaJogador);
+            DesenharCartaComCarroDaCpu(cartaCpu);
 
-            _tabuleiroJogoDisplay.ExibirCartarJogador(cartaDisplayJogador, carroDisplayJogador);
-            _tabuleiroJogoDisplay.ExibirCartarCpu(cartaDisplayCpu, carroDisplayCpu);
 
             _tabuleiroJogoDisplay.ExibirOpcoesAtributos();
 
@@ -87,5 +84,26 @@ namespace ConsoleApp
             }
         }
 
+        public void DesenharTelaDoJogo()
+        {
+            _tabuleiroJogoDisplay.ExibirNoConsole();
+            TabuleiroJogoDisplay.ExibirPlacar(_jogador, _cpu);
+        }
+
+        public void DesenharCartaComCarroDoJogador(Carta carta)
+        {
+            var cartaAsciiDisplay = _geradorImagemAscii.DesenharCarta(carta.Atributos);
+            var carroAsciiDisplay = _geradorImagemAscii.DesenharCarroAleatorio();
+
+            _tabuleiroJogoDisplay.ExibirCartaComCarroJogador(cartaAsciiDisplay, carroAsciiDisplay);
+        }
+
+        public void DesenharCartaComCarroDaCpu(Carta carta)
+        {
+            var cartaAsciiDisplay = _geradorImagemAscii.DesenharCarta(carta.Atributos);
+            var carroAsciiDisplay = _geradorImagemAscii.DesenharCarroAleatorio();
+
+            _tabuleiroJogoDisplay.ExibirCartaComCarroCpu(cartaAsciiDisplay, carroAsciiDisplay);
+        }
     }
 }

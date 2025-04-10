@@ -46,7 +46,7 @@ public class TabuleiroJogoDisplay : Display
         RenderizadorTabuleiro.ShowInputOptions();
     }
 
-    public void ExibirCartarJogador(string cartaJogador, string carroJogador)
+    public void ExibirCartaComCarroJogador(string cartaJogador, string carroJogador)
     {
         int y = cartaJogador.Split('\n').Length;
 
@@ -54,7 +54,7 @@ public class TabuleiroJogoDisplay : Display
         RenderizadorTabuleiro.ImprimirNaTelaComCorAleatoria(carroJogador, new PosicaoCursor(5, y + 3));
     }
 
-    public void ExibirCartarCpu(string cartaCpu, string carroCpu)
+    public void ExibirCartaComCarroCpu(string cartaCpu, string carroCpu)
     {
         int x = cartaCpu.Split('\n')[0].Length;
         int y = cartaCpu.Split('\n').Length;
