@@ -59,16 +59,20 @@ public class RenderizadorTabuleiro
 
     public static void ImprimirNaTelaComCor(string texto, PosicaoCursor posicaoCursor, ConsoleColor cor)
     {
-        MudarCorDoTextoConsole(cor);
-        ImprimirNaTela(texto, posicaoCursor);
-        MudarCorDoTextoConsole(ConsoleColor.White);
+        try
+        {
+            MudarCorDoTextoConsole(cor);
+            ImprimirNaTela(texto, posicaoCursor);
+        }
+        finally
+        {
+            MudarCorDoTextoConsole(ConsoleColor.White);
+        }
     }
 
     public static void ImprimirNaTelaComCorAleatoria(string texto, PosicaoCursor posicaoCursor)
     {
-        MudarCorDoTextoConsole(GeradorDeCores.ObterCorAleatoria());
-        ImprimirNaTela(texto, posicaoCursor);
-        MudarCorDoTextoConsole(ConsoleColor.White);
+        ImprimirNaTelaComCor(texto, posicaoCursor, GeradorDeCores.ObterCorAleatoria());
     }
 
     public static void ShowInputOptions()

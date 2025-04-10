@@ -49,7 +49,7 @@ public class CoordenadasConsole
             return new CoordenadasConsole
             {
                 PosicaoInicialCursor = new(_cursorEspacosAEsquerda, _cursorEspacosDoTopo),
-                PosicaoCursor =  new(_cursorEspacosAEsquerda, _cursorEspacosDoTopo),
+                PosicaoCursor = new(_cursorEspacosAEsquerda, _cursorEspacosDoTopo),
                 AreaOcupadaConsole = new(_largura, _altura)
             };
         }
@@ -67,7 +67,7 @@ public class CoordenadasConsole
 
     public void IncrementarEspacosDoTopo(int quantidade)
     {
-        PosicaoCursor.EspacosDoTopo = (PosicaoCursor.EspacosDoTopo + quantidade);
+        PosicaoCursor.IncrementarEspacosDoTopo(quantidade);
     }
 
     public void IncrementarEspacosDoTopoTemporariamente(int quantidade)
