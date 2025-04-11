@@ -45,7 +45,7 @@ namespace Display
             string espacamentoCabecalhoCarta = atributos.Modelo.PadRight(30); // Para garantir alinhamento
 
             cartaDisplay.AppendLine(moldura);
-            cartaDisplay.AppendLine($"│     🏎️   {espacamentoCabecalhoCarta}|");
+            cartaDisplay.AppendLine($"│     🏎️   {espacamentoCabecalhoCarta}");
             cartaDisplay.AppendLine(moldura);
             cartaDisplay.AppendLine($"| Velocidade:  {atributos.VelocidadeMax.ToString() + " km/h"}");
             cartaDisplay.AppendLine($"| Potência:  {atributos.Potencia.ToString() + " HP"}");

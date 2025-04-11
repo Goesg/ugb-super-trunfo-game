@@ -44,6 +44,10 @@ public class RenderizadorTabuleiro
 
                 foreach (var linhaTexto in linhasDoTexto)
                 {
+                    if(posicaoCursor.EspacosDoTopo >= Console.WindowHeight)
+                    {
+                        break; // não imprime mais nada se o cursor estiver fora da tela
+                    }
                     MoverCursorNoConsole(posicaoCursor);
                     Console.Write(linhaTexto);
                     posicaoCursor.IncrementarEspacosDoTopo(1); // para a próxima linha do texto não sobrescrever a anterior
