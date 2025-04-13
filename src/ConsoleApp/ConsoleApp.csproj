@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Core/Core.csproj" />
-    <ProjectReference Include="..\Display\Display.csproj" />
+    <ProjectReference Include="../Display/Display.csproj" />
   </ItemGroup>
 
   <ItemGroup>
