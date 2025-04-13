@@ -1,7 +1,6 @@
-# Build artefacts
-bin/
-obj/
-out/
+# Ignora bin/ e obj/ de todos os projetos .NET
+**/bin/
+**/obj/
 
 # User-specific files
 *.user
