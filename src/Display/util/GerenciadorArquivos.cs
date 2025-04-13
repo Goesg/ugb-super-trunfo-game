@@ -15,7 +15,7 @@ namespace Display.util
 
             if (!File.Exists(caminhoDoArquivo))
             {
-                throw new Exception("Arquivo nao encontrado");
+                throw new Exception("Arquivo nao encontrado: " + nomeArquivo);
             }
 
             return ObterConteudoDoArquivo(caminhoDoArquivo);
