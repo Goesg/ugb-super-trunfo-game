@@ -4,6 +4,10 @@ on:
   push:
     branches: [master]
 
+env:
+  PROJECT_PATH: src/ConsoleApp/ConsoleApp.csproj
+  EXECUTABLE_PATH: src/ConsoleApp/bin/Release/net8.0/win-x64/publish/ConsoleApp.exe
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,9 +27,9 @@ jobs:
       - name: Buildar solucao do projeto
         run: dotnet build SuperTrunfoUgbGame.sln -c Release --no-restore
 
-      - name: Gerar Executavel do jogo - versão Windows (.exe)
+      - name: Gerar Executavel do jogo - versao Windows (.exe)
         run: |
-          dotnet publish ConsoleApp/ConsoleApp.csproj \
+          dotnet publish ${{ env.PROJECT_PATH }} \
             -c Release \
             -r win-x64 \
             --self-contained true \
@@ -36,5 +40,5 @@ jobs:
       - name: Upload published executable 🚀
         uses: actions/upload-artifact@v4
         with:
-          name: SuperTrufoCarrosUgbApp
-          path: ConsoleApp/bin/Release/net8.0/win-x64/publish/ConsoleApp.exe
+          name: SuperTrunfoCarrosUgbApp
+          path: ${{ env.EXECUTABLE_PATH }}
