@@ -35,7 +35,7 @@ jobs:
             --self-contained true \
             /p:PublishSingleFile=true \
             /p:IncludeNativeLibrariesForSelfExtract=true \
-            /p:PublishTrimmed=true
+            /p:PublishTrimmed=false
 
       - name: Upload published executable 🚀
         uses: actions/upload-artifact@v4
