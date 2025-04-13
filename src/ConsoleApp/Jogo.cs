@@ -174,7 +174,8 @@ namespace ConsoleApp
             double valorAtributoTurnoJogador = cartaDoTurnoJogador.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
             double valorAtributoTurnoCpu = cartaDoTurnoCpu.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
 
-            string mensagemResultadoAtributoTurno = $"{atributoEscolhidoDoTurno}: {valorAtributoTurnoJogador} (Você) vs {valorAtributoTurnoCpu} (CPU)";
+            string quemEscolheuAtributoTurno = _ehVezDoJogador ? "Você" : "Cpu";
+            string mensagemResultadoAtributoTurno = $"{quemEscolheuAtributoTurno} escolheu o atributo {atributoEscolhidoDoTurno}: {valorAtributoTurnoJogador} (Você) VS {valorAtributoTurnoCpu} (CPU)";
             _tabuleiroJogoDisplay.ExibirResultadoDoTurno(mensagemResultadoAtributoTurno);
 
             if (valorAtributoTurnoJogador > valorAtributoTurnoCpu)
