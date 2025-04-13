@@ -67,6 +67,21 @@ public class TabuleiroJogoDisplay : Display
     {
         var x = RegiaoTabuleiro.AreaDoInput.GerarCoordenadasEmTempoReal();
 
+        ApagarUltimaMensagem();
         RenderizadorTabuleiro.ImprimirNaTela(mensagem, new PosicaoCursor(5, x.PosicaoInicialCursor.EspacosDoTopo - 2));
+    }
+
+    public void ApagarUltimaMensagem()
+    {
+        var x = RegiaoTabuleiro.AreaDoInput.GerarCoordenadasEmTempoReal();
+
+        RenderizadorTabuleiro.ImprimirNaTela(new string(' ', x.AreaOcupadaConsole.Largura - 5), new PosicaoCursor(5, x.PosicaoInicialCursor.EspacosDoTopo - 2));
+    }
+
+    public void ExibirResultadoDoTurno(string mensagem)
+    {
+        var x = RegiaoTabuleiro.AreaDoInput.GerarCoordenadasEmTempoReal();
+
+        RenderizadorTabuleiro.ImprimirNaTela(mensagem, new PosicaoCursor(5, x.PosicaoInicialCursor.EspacosDoTopo - 4));
     }
 }
