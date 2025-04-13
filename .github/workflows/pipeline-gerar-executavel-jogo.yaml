@@ -1,0 +1,40 @@
+name: Buildar E Gerar executavel do jogo
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository ✅
+        uses: actions/checkout@v4
+
+      - name: Setup DotNET 📥
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
+
+      - name: Restaurar dependencias do projeto 🧹
+        run: dotnet restore SuperTrunfoUgbGame.sln
+
+      - name: Buildar solucao do projeto
+        run: dotnet build SuperTrunfoUgbGame.sln -c Release --no-restore
+
+      - name: Gerar Executavel do jogo - versao windowns (.exe)
+        run:
+          dotnet publish SuperTrumpGame.ConsoleApp/SuperTrumpGame.ConsoleApp.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          /p:PublishSingleFile=true
+          /p:IncludeNativeLibrariesForSelfExtract=true
+          /p:PublishTrimmed=true
+
+      - name: Upload published executable 🚀
+        uses: actions/upload-artifact@v4
+        with:
+          name: SuperTrufoCarrosUgbApp
+          path: SuperTrunfoUgbGame.ConsoleApp/bin/Release/net8.0/win-x64/publish/SuperTrunfoUgbGame.ConsoleApp.exe
