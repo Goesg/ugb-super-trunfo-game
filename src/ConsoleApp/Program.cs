@@ -13,6 +13,9 @@ public static class Program
 
     public static void Main(string[] args)
     {
+        // Forçar codificação no console para UTF-8 (WINDOWNS)
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
         while (DeveExecutarPrograma())
         {
             switch (_estadoJogo)
