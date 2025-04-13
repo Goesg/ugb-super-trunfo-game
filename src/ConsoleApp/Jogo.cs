@@ -1,5 +1,6 @@
 using System;
 using Core;
+using Core.ArquivosCore;
 using Display;
 
 namespace ConsoleApp
@@ -12,6 +13,8 @@ namespace ConsoleApp
         private Jogador _cpu;
         private bool _opcaoDeSairSelecionado = false;
         private readonly Random _random = new();
+
+        private bool _ehVezDoJogador = true;
 
         private readonly TabuleiroJogoDisplay _tabuleiroJogoDisplay = ConstrutorDisplay.ConstrutirDisplayTabuleiro();
         private readonly GeradorImagemAscii _geradorImagemAscii = new();
@@ -29,7 +32,7 @@ namespace ConsoleApp
 
             do
             {
-                ExecutarJogoSuperTrunfo();
+                ExecutarTurnoDoJogo();
             }
             while (JogoEstiverEmAndamento());
         }
@@ -50,38 +53,48 @@ namespace ConsoleApp
             return !_opcaoDeSairSelecionado;
         }
 
-        internal void ExecutarJogoSuperTrunfo()
+        internal void ExecutarTurnoDoJogo()
         {
-            bool EhVezDoJogador = true;
-
             DesenharTelaDoJogo();
-
             var cartaJogador = _jogador.JogarCartaDoTopo();
-            var cartaCpu = _cpu.JogarCartaDoTopo();
-
             DesenharCartaComCarroDoJogador(cartaJogador);
-            DesenharCartaComCarroDaCpu(cartaCpu);
-
-
             _tabuleiroJogoDisplay.ExibirOpcoesAtributos();
 
-            if (EhVezDoJogador)
+            var cartaCpu = _cpu.JogarCartaDoTopo();
+
+            AtributoInput atributoEscolhidoDoTurno;
+
+            if (_ehVezDoJogador)
             {
                 char opcao = Console.ReadKey(intercept: true).KeyChar;
 
-                if ('5'.Equals(opcao))
+                if ('6'.Equals(opcao))
                 {
                     _opcaoDeSairSelecionado = true;
                     return;
                 }
 
-                if (!"123".Contains(opcao))
+                if (!"12345".Contains(opcao))
                 {
-                    /*                     ConsoleRenderer.UpdateStatus("Atributo inválido. Pressione ENTER para continuar...");
-                     */
+                    // feedback para informar opção invalida
                     return;
+
                 }
+
+                var opcaoAtributo = ConveterParaInteiro(opcao);
+                var atributoEscolhidoPeloJogador = (AtributoInput)opcaoAtributo;
+                atributoEscolhidoDoTurno = atributoEscolhidoPeloJogador;
             }
+            else
+            {
+                var atributoEscolhidoPelaCpu = EscolherAtributoAleatorio(cartaCpu);
+                atributoEscolhidoDoTurno = atributoEscolhidoPelaCpu;
+
+            }
+
+            DesenharCartaComCarroDaCpu(cartaCpu);
+
+            DeterminarVencedorDoTurno(atributoEscolhidoDoTurno, cartaJogador, cartaCpu);
         }
 
         public void DesenharTelaDoJogo()
@@ -105,5 +118,47 @@ namespace ConsoleApp
 
             _tabuleiroJogoDisplay.ExibirCartaComCarroCpu(cartaAsciiDisplay, carroAsciiDisplay);
         }
+
+        internal int ConveterParaInteiro(char opcaoInput)
+        {
+            if (char.IsDigit(opcaoInput))
+            {
+                return int.Parse(opcaoInput.ToString());
+            }
+
+            return 999;
+            // feedback para informar que não é um digito
+        }
+
+        internal AtributoInput EscolherAtributoAleatorio(Carta carta)
+        {
+            var posicaoSortida = _random.Next(4);
+            return (AtributoInput)posicaoSortida;
+        }
+
+        internal char AguardarPor()
+        {
+            return Console.ReadKey(intercept: true).KeyChar;
+        }
+
+        internal void DeterminarVencedorDoTurno(AtributoInput atributoEscolhidoDoTurno, Carta cartaDoTurnoJogador, Carta cartaDoTurnoCpu)
+        {
+            double valorAtributoTurnoJogador = cartaDoTurnoJogador.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
+            double valorAtributoTurnoCpu = cartaDoTurnoCpu.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
+
+            if (valorAtributoTurnoJogador > valorAtributoTurnoCpu)
+            {
+                _jogador.ReceberCarta(cartaDoTurnoJogador);
+                _jogador.ReceberCarta(cartaDoTurnoCpu);
+
+                var mensagem = _ehVezDoJogador ? "Você venceu a rodada!" : "CPU perdeu a rodada!";
+                _tabuleiroJogoDisplay.ExibirMensagem(mensagem);
+
+            }
+
+            AguardarPor();
+        }
+
     }
+
 }

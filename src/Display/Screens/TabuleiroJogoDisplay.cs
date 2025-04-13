@@ -63,4 +63,10 @@ public class TabuleiroJogoDisplay : Display
         RenderizadorTabuleiro.ImprimirNaTelaComCorAleatoria(carroCpu, new PosicaoCursor(x + 100, y + 3));
     }
 
+    public void ExibirMensagem(string mensagem)
+    {
+        var x = RegiaoTabuleiro.AreaDoInput.GerarCoordenadasEmTempoReal();
+
+        RenderizadorTabuleiro.ImprimirNaTela(mensagem, new PosicaoCursor(5, x.PosicaoInicialCursor.EspacosDoTopo - 2));
+    }
 }

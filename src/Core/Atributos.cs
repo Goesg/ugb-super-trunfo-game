@@ -15,5 +15,7 @@ public class Atributos
     public double Consumo { get; set; }
     public decimal Preco { get; set; }
     public bool SuperTrunfo { get; set; }
+
+    
 }
 
