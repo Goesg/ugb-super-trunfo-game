@@ -25,7 +25,7 @@ jobs:
 
       - name: Gerar Executavel do jogo - versao windowns (.exe)
         run:
-          dotnet publish SuperTrumpGame.ConsoleApp/SuperTrumpGame.ConsoleApp.csproj
+          dotnet publish SuperTrunfoUgbGame.ConsoleApp/SuperTrunfoUgbGame.ConsoleApp.csproj
           -c Release
           -r win-x64
           --self-contained true
