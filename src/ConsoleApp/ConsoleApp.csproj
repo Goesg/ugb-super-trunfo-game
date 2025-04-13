@@ -6,8 +6,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="..\Display\ArquivosDisplay\**\*.txt">
+    <None Update="..\Display\ArquivosDisplay\*.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+
+    <None Update="..\Core\ArquivosCore\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   
