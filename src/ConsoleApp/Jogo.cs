@@ -38,6 +38,7 @@ namespace ConsoleApp
 
             string mensagemResultadoPartida = _jogador.Cartas.Count > _cpu.Cartas.Count ? "🎉 Você venceu o jogo!" : "💻 CPU venceu o jogo!";
             _tabuleiroJogoDisplay.ExibirMensagem(mensagemResultadoPartida);
+            AguardarPor();
         }
 
         internal bool JogoEstiverEmAndamento()

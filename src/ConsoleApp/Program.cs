@@ -13,7 +13,7 @@ public static class Program
 
     public static void Main(string[] args)
     {
-        // Forçar codificação no console para UTF-8 (WINDOWNS)
+        // Forçar codificação no console para UTF-8 para renderizar emojis no terminal Windowns
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
         while (DeveExecutarPrograma())
