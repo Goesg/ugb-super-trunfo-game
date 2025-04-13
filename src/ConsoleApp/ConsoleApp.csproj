@@ -27,6 +27,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+     <!-- Metadados do projeto -->
+     <Company>Universidade Geraldo Di Biase</Company>
+     <Authors>Diego, Sara, Gutenberg, Julio</Authors>
+     <Product>Super Trunfo UGB Game</Product>
+     <Description>Projeto universitário: jogo de cartas Super Trunfo desenvolvido em C# e console.</Description>
+     <Copyright>Copyright © 2025 Grupo Super Trunfo</Copyright>
+     <PackageTags>super-trunfo; console; jogo; universidade; ugb</PackageTags>
+     <AssemblyTitle>Super Trunfo UGB</AssemblyTitle>
+     <ApplicationIcon />
   </PropertyGroup>
 
 </Project>
