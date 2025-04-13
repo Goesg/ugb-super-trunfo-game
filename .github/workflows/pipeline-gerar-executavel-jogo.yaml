@@ -24,8 +24,7 @@ jobs:
         run: dotnet build SuperTrunfoUgbGame.sln -c Release --no-restore
 
       - name: Gerar Executavel do jogo - versao windowns (.exe)
-        run:
-          dotnet publish SuperTrunfoUgbGame.ConsoleApp/SuperTrunfoUgbGame.ConsoleApp.csproj
+        run: dotnet publish ConsoleApp/ConsoleApp.csproj
           -c Release
           -r win-x64
           --self-contained true
@@ -37,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: SuperTrufoCarrosUgbApp
-          path: SuperTrunfoUgbGame.ConsoleApp/bin/Release/net8.0/win-x64/publish/SuperTrunfoUgbGame.ConsoleApp.exe
+          path: ConsoleApp/bin/Release/net8.0/win-x64/publish/ConsoleApp.exe
