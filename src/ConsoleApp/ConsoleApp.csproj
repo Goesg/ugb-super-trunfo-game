@@ -5,13 +5,19 @@
     <ProjectReference Include="../Display/Display.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+   <!-- Copiar todos os arquivos .txt do Display/ArquivosDisplay para o output directory -->
+   <ItemGroup>
     <None Update="..\Display\ArquivosDisplay\*.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>ArquivosDisplay\%(Filename)%(Extension)</Link>
     </None>
+  </ItemGroup>
 
+  <!-- Copiar todos os arquivos .json do Core/ArquivosCore para o output directory -->
+  <ItemGroup>
     <None Update="..\Core\ArquivosCore\*.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>ArquivosCore\%(Filename)%(Extension)</Link>
     </None>
   </ItemGroup>
   
