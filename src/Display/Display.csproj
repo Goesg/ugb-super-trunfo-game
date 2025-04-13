@@ -4,32 +4,6 @@
     <ProjectReference Include="../Core/Core.csproj" />
   </ItemGroup>
 
-<!--   <ItemGroup>
-    <None Update="ArquivosDisplay\logo-nome-jogo-ascii.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-
-    <None Update="ArquivosDisplay\carro-ascii.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-
-    <None Update="ArquivosDisplay\carro-2-ascii.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-
-    <None Update="ArquivosDisplay\carro-3-ascii.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-
-    <None Update="ArquivosDisplay\nome-desenvolvedores-ascii.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-
-     <None Update="ArquivosDisplay\texto-pressione-enter-ascii.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup> -->
-
   <ItemGroup>
     <EmbeddedResource Include="ArquivosDisplay\*.txt" />
   </ItemGroup>

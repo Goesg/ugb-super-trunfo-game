@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <None Update="ArquivosCore\cartas_super_trunfo_tema_carros_esportivos.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="ArquivosCore\*.json" />
   </ItemGroup>
 
   <PropertyGroup>

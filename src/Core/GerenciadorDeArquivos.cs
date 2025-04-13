@@ -1,35 +1,26 @@
 using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace Core
 {
 
     public class GerenciadorDeArquivos
     {
-        private readonly string caminhoPastaDeArquivos = AppContext.BaseDirectory;
-
-        private readonly string nomeDaPastaDeArquivos = "ArquivosCore";
+        private readonly Assembly _assembly = Assembly.GetExecutingAssembly();
+        private readonly string _namespaceBase = "Core.ArquivosCore";
 
         public string ObterConteudoArquivoPorNome(string nomeArquivo)
         {
-            string caminhoDoArquivo = MontarCaminhoCompletoDoArquivo(caminhoPastaDeArquivos, nomeDaPastaDeArquivos, nomeArquivo);
+            var nomeCompletoRecurso = $"Core.ArquivosCore.{nomeArquivo}";
+            using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(nomeCompletoRecurso);
 
-            if (!File.Exists(caminhoDoArquivo))
-            {
-                throw new Exception("Arquivo nao encontrado");
-            }
+            if (stream == null)
+                throw new Exception($"Erro ao exibir tela inicial do jogo. Msg: Recurso embutido '{nomeArquivo}' não encontrado no assembly.");
 
-            return ObterConteudoDoArquivo(caminhoDoArquivo);
-        }
-
-        internal string MontarCaminhoCompletoDoArquivo(string caminhoPastaDeArquivos, string nomeDaPastaDeArquivos, string nomeArquivo)
-        {
-            return Path.Combine(caminhoPastaDeArquivos, nomeDaPastaDeArquivos, nomeArquivo);
-        }
-
-        internal string ObterConteudoDoArquivo(string caminhoDoArquivo)
-        {
-            return File.ReadAllText(caminhoDoArquivo);
-
+            using var reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
 
     }
