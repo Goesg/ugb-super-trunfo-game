@@ -5,7 +5,8 @@ namespace Core
 
     public class GerenciadorDeArquivos
     {
-        private readonly string caminhoPastaDeArquivos = AppDomain.CurrentDomain.BaseDirectory;
+        private readonly string caminhoPastaDeArquivos = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
+
         private readonly string nomeDaPastaDeArquivos = "ArquivosCore";
 
         public string ObterConteudoArquivoPorNome(string nomeArquivo)

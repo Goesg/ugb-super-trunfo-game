@@ -6,7 +6,7 @@ namespace Display.util
     public class GerenciadorArquivos
     {
 
-        private readonly string caminhoPastaDeArquivos = AppDomain.CurrentDomain.BaseDirectory;
+        private readonly string caminhoPastaDeArquivos = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
         private readonly string nomeDaPastaDeArquivos = "ArquivosDisplay";
 
         public string ObterConteudoArquivoPorNome(string nomeArquivo)
