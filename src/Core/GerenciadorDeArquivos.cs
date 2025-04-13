@@ -8,9 +8,6 @@ namespace Core
 
     public class GerenciadorDeArquivos
     {
-        private readonly Assembly _assembly = Assembly.GetExecutingAssembly();
-        private readonly string _namespaceBase = "Core.ArquivosCore";
-
         public string ObterConteudoArquivoPorNome(string nomeArquivo)
         {
             var nomeCompletoRecurso = $"Core.ArquivosCore.{nomeArquivo}";

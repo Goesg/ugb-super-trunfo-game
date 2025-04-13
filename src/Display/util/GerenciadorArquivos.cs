@@ -7,9 +7,6 @@ namespace Display.util
 {
     public class GerenciadorArquivos
     {
-        private readonly Assembly _assembly = Assembly.GetExecutingAssembly();
-        private readonly string _namespaceBase = "Display.ArquivosDisplay";
-
         public string ObterConteudoArquivoPorNome(string nomeArquivo)
         {
             var nomeCompletoRecurso = $"Display.ArquivosDisplay.{nomeArquivo}";

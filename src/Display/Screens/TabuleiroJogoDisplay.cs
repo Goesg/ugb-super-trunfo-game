@@ -75,7 +75,7 @@ public class TabuleiroJogoDisplay : Display
     {
         var x = RegiaoTabuleiro.AreaDoInput.GerarCoordenadasEmTempoReal();
 
-        RenderizadorTabuleiro.ImprimirNaTela(new string(' ', x.AreaOcupadaConsole.Largura - 5), new PosicaoCursor(5, x.PosicaoInicialCursor.EspacosDoTopo - 2));
+        RenderizadorTabuleiro.ImprimirNaTela(new string(' ', x.AreaOcupadaConsole.Largura - 10), new PosicaoCursor(5, x.PosicaoInicialCursor.EspacosDoTopo - 2));
     }
 
     public void ExibirResultadoDoTurno(string mensagem)
