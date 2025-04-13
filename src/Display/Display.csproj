@@ -4,7 +4,7 @@
     <ProjectReference Include="../Core/Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+<!--   <ItemGroup>
     <None Update="ArquivosDisplay\logo-nome-jogo-ascii.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -28,7 +28,12 @@
      <None Update="ArquivosDisplay\texto-pressione-enter-ascii.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup> -->
+
+  <ItemGroup>
+    <EmbeddedResource Include="ArquivosDisplay\*.txt" />
   </ItemGroup>
+  
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
