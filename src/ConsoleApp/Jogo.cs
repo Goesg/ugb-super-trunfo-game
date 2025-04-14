@@ -38,7 +38,7 @@ namespace ConsoleApp
 
             string mensagemResultadoPartida = _jogador.Cartas.Count > _cpu.Cartas.Count ? "🎉 Você venceu o jogo!" : "💻 CPU venceu o jogo!";
             _tabuleiroJogoDisplay.ExibirMensagem(mensagemResultadoPartida);
-            AguardarPor();
+            AguardarUsuarioApertarAlgumaTecla();
         }
 
         internal bool JogoEstiverEmAndamento()
@@ -89,9 +89,12 @@ namespace ConsoleApp
             }
 
             DesenharCartaComCarroDaCpu(cartaCpu);
-            DeterminarVencedorDoTurno(atributoEscolhidoDoTurno, cartaJogador, cartaCpu);
+            DeterminarVencedorDoTurno(atributoEscolhidoDoTurno, cartaJogador, cartaCpu);    
+            AlternarVezDoTurno();
+        }
 
-            // Alternar turno
+        internal void AlternarVezDoTurno()
+        {
             _ehVezDoJogador = !_ehVezDoJogador;
         }
 
@@ -116,17 +119,17 @@ namespace ConsoleApp
                 catch (FormatException)
                 {
                     _tabuleiroJogoDisplay.ExibirMensagem("[FormatException] Entrada inválida. Por favor, digite um número.");
-                    AguardarPor();
+                    AguardarUsuarioApertarAlgumaTecla();
                 }
                 catch (OverflowException)
                 {
                     _tabuleiroJogoDisplay.ExibirMensagem("[OverflowException] Entrada inválida. Insira um número válido.");
-                    AguardarPor();
+                    AguardarUsuarioApertarAlgumaTecla();
                 }
                 catch (Exception ex)
                 {
                     _tabuleiroJogoDisplay.ExibirMensagem($"Entrada inválida: {ex.Message}");
-                    AguardarPor();
+                    AguardarUsuarioApertarAlgumaTecla();
                 }
             }
         }
@@ -195,10 +198,10 @@ namespace ConsoleApp
                 _tabuleiroJogoDisplay.ExibirMensagem(mensagem);
             }
 
-            AguardarPor();
+            AguardarUsuarioApertarAlgumaTecla();
         }
 
-        internal char AguardarPor()
+        internal char AguardarUsuarioApertarAlgumaTecla()
         {
             return Console.ReadKey(intercept: true).KeyChar;
         }
