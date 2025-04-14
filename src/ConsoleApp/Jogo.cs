@@ -89,7 +89,7 @@ namespace ConsoleApp
             }
 
             DesenharCartaComCarroDaCpu(cartaCpu);
-            DeterminarVencedorDoTurno(atributoEscolhidoDoTurno, cartaJogador, cartaCpu);    
+            DeterminarVencedorDoTurno(atributoEscolhidoDoTurno, cartaJogador, cartaCpu);
             AlternarVezDoTurno();
         }
 
@@ -174,12 +174,38 @@ namespace ConsoleApp
 
         internal void DeterminarVencedorDoTurno(AtributoInput atributoEscolhidoDoTurno, Carta cartaDoTurnoJogador, Carta cartaDoTurnoCpu)
         {
-            double valorAtributoTurnoJogador = cartaDoTurnoJogador.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
-            double valorAtributoTurnoCpu = cartaDoTurnoCpu.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
-
             string quemEscolheuAtributoTurno = _ehVezDoJogador ? "Você" : "Cpu";
             string mensagemResultadoAtributoTurno = $"{quemEscolheuAtributoTurno} escolheu o atributo {atributoEscolhidoDoTurno}: {valorAtributoTurnoJogador} (Você) VS {valorAtributoTurnoCpu} (CPU)";
             _tabuleiroJogoDisplay.ExibirResultadoDoTurno(mensagemResultadoAtributoTurno);
+
+            if (AtributoInput.Velocidade.Equals(atributoEscolhidoDoTurno))
+            {
+                VerificarQuemPossuiMaiorValor(atributoEscolhidoDoTurno, cartaDoTurnoJogador, cartaDoTurnoCpu);
+            }
+            else if (AtributoInput.Potencia.Equals(atributoEscolhidoDoTurno))
+            {
+                VerificarQuemPossuiMaiorValor(atributoEscolhidoDoTurno, cartaDoTurnoJogador, cartaDoTurnoCpu);
+            }
+            else if (AtributoInput.Consumo.Equals(atributoEscolhidoDoTurno))
+            {
+                VerificarQuemPossuiMenorValor(atributoEscolhidoDoTurno, cartaDoTurnoJogador, cartaDoTurnoCpu);
+            }
+            else if (AtributoInput.ZeroACem.Equals(atributoEscolhidoDoTurno))
+            {
+                VerificarQuemPossuiMenorValor(atributoEscolhidoDoTurno, cartaDoTurnoJogador, cartaDoTurnoCpu);
+            }
+            else if (AtributoInput.Peso.Equals(atributoEscolhidoDoTurno))
+            {
+                VerificarQuemPossuiMenorValor(atributoEscolhidoDoTurno, cartaDoTurnoJogador, cartaDoTurnoCpu);
+            }
+
+            AguardarUsuarioApertarAlgumaTecla();
+        }
+
+        internal void VerificarQuemPossuiMaiorValor(AtributoInput atributoEscolhidoDoTurno, Carta cartaDoTurnoJogador, Carta cartaDoTurnoCpu)
+        {
+            double valorAtributoTurnoJogador = cartaDoTurnoJogador.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
+            double valorAtributoTurnoCpu = cartaDoTurnoCpu.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
 
             if (valorAtributoTurnoJogador > valorAtributoTurnoCpu)
             {
@@ -197,8 +223,29 @@ namespace ConsoleApp
                 var mensagem = _ehVezDoJogador ? "Você perdeu a rodada!" : "CPU venceu a rodada!";
                 _tabuleiroJogoDisplay.ExibirMensagem(mensagem);
             }
+        }
 
-            AguardarUsuarioApertarAlgumaTecla();
+        internal void VerificarQuemPossuiMenorValor(AtributoInput atributoEscolhidoDoTurno, Carta cartaDoTurnoJogador, Carta cartaDoTurnoCpu)
+        {
+            double valorAtributoTurnoJogador = cartaDoTurnoJogador.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
+            double valorAtributoTurnoCpu = cartaDoTurnoCpu.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
+
+            if (valorAtributoTurnoJogador < valorAtributoTurnoCpu)
+            {
+                _jogador.ReceberCarta(cartaDoTurnoJogador);
+                _jogador.ReceberCarta(cartaDoTurnoCpu);
+
+                var mensagem = _ehVezDoJogador ? "Você venceu a rodada!" : "CPU perdeu a rodada!";
+                _tabuleiroJogoDisplay.ExibirMensagem(mensagem);
+            }
+            else
+            {
+                _cpu.ReceberCarta(cartaDoTurnoCpu);
+                _cpu.ReceberCarta(cartaDoTurnoJogador);
+
+                var mensagem = _ehVezDoJogador ? "Você perdeu a rodada!" : "CPU venceu a rodada!";
+                _tabuleiroJogoDisplay.ExibirMensagem(mensagem);
+            }
         }
 
         internal char AguardarUsuarioApertarAlgumaTecla()
