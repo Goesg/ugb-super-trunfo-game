@@ -36,7 +36,7 @@ namespace ConsoleApp
             }
             while (JogoEstiverEmAndamento());
 
-            string mensagemResultadoPartida = _jogador.Cartas.Count > _cpu.Cartas.Count ? "🎉 Você venceu o jogo!" : "💻 CPU venceu o jogo!";
+            string mensagemResultadoPartida = _jogador.Cartas.Count > _cpu.Cartas.Count ? "🏆  Você venceu o jogo!" : "💻 CPU venceu o jogo!";
             _tabuleiroJogoDisplay.ExibirMensagem(mensagemResultadoPartida);
             AguardarUsuarioApertarAlgumaTecla();
         }
@@ -174,9 +174,18 @@ namespace ConsoleApp
 
         internal void DeterminarVencedorDoTurno(AtributoInput atributoEscolhidoDoTurno, Carta cartaDoTurnoJogador, Carta cartaDoTurnoCpu)
         {
-            string quemEscolheuAtributoTurno = _ehVezDoJogador ? "Você" : "Cpu";
-            string mensagemResultadoAtributoTurno = $"{quemEscolheuAtributoTurno} escolheu o atributo {atributoEscolhidoDoTurno}: {valorAtributoTurnoJogador} (Você) VS {valorAtributoTurnoCpu} (CPU)";
-            _tabuleiroJogoDisplay.ExibirResultadoDoTurno(mensagemResultadoAtributoTurno);
+            bool jogadorPossuiACartaSuperTrunfo = cartaDoTurnoCpu.Atributos.SuperTrunfo;
+            bool cpuPossuiACartaSuperTrunfo = cartaDoTurnoCpu.Atributos.SuperTrunfo;
+
+            if (jogadorPossuiACartaSuperTrunfo)
+            {
+                _tabuleiroJogoDisplay.ExibirMensagem("🥇 SUPER TRUNFO Você venceu a rodada!");
+            }
+
+            if (cpuPossuiACartaSuperTrunfo)
+            {
+                _tabuleiroJogoDisplay.ExibirMensagem("🥇 SUPER TRUNFO CPU venceu a rodada!");
+            }
 
             if (AtributoInput.Velocidade.Equals(atributoEscolhidoDoTurno))
             {
@@ -206,6 +215,7 @@ namespace ConsoleApp
         {
             double valorAtributoTurnoJogador = cartaDoTurnoJogador.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
             double valorAtributoTurnoCpu = cartaDoTurnoCpu.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
+            MostrarMensagemAtributosDoTurno(atributoEscolhidoDoTurno, valorAtributoTurnoJogador, valorAtributoTurnoCpu);
 
             if (valorAtributoTurnoJogador > valorAtributoTurnoCpu)
             {
@@ -229,6 +239,7 @@ namespace ConsoleApp
         {
             double valorAtributoTurnoJogador = cartaDoTurnoJogador.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
             double valorAtributoTurnoCpu = cartaDoTurnoCpu.ObterValorAtributoPorInput(atributoEscolhidoDoTurno);
+            MostrarMensagemAtributosDoTurno(atributoEscolhidoDoTurno, valorAtributoTurnoJogador, valorAtributoTurnoCpu);
 
             if (valorAtributoTurnoJogador < valorAtributoTurnoCpu)
             {
@@ -251,6 +262,13 @@ namespace ConsoleApp
         internal char AguardarUsuarioApertarAlgumaTecla()
         {
             return Console.ReadKey(intercept: true).KeyChar;
+        }
+
+        internal void MostrarMensagemAtributosDoTurno(AtributoInput atributoEscolhidoDoTurno, double valorAtributoTurnoJogador, double valorAtributoTurnoCpu)
+        {
+            string quemEscolheuAtributoTurno = _ehVezDoJogador ? "Você" : "Cpu";
+            string mensagemResultadoAtributoTurno = $"{quemEscolheuAtributoTurno} escolheu o atributo {atributoEscolhidoDoTurno}: {valorAtributoTurnoJogador} (Você) VS {valorAtributoTurnoCpu} (CPU)";
+            _tabuleiroJogoDisplay.ExibirResultadoDoTurno(mensagemResultadoAtributoTurno);
         }
 
     }
