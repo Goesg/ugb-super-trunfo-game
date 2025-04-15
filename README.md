@@ -95,10 +95,10 @@ dotnet run --project src/ConsoleApp
 
 ## Autores
 
-- Diego 
-- Sarah 
+- [Diego](https://github.com/Goessg)
+- [Sarah](https://github.com/sarahsilva123)
 - Júlio 
-- Gutemberg
+- [Gutemberg](https://github.com/Gutemcp)
 
 ---
 
