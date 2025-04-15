@@ -174,17 +174,25 @@ namespace ConsoleApp
 
         internal void DeterminarVencedorDoTurno(AtributoInput atributoEscolhidoDoTurno, Carta cartaDoTurnoJogador, Carta cartaDoTurnoCpu)
         {
-            bool jogadorPossuiACartaSuperTrunfo = cartaDoTurnoCpu.Atributos.SuperTrunfo;
+            bool jogadorPossuiACartaSuperTrunfo = cartaDoTurnoJogador.Atributos.SuperTrunfo;
             bool cpuPossuiACartaSuperTrunfo = cartaDoTurnoCpu.Atributos.SuperTrunfo;
 
             if (jogadorPossuiACartaSuperTrunfo)
             {
                 _tabuleiroJogoDisplay.ExibirMensagem("🥇 SUPER TRUNFO Você venceu a rodada!");
+                _jogador.ReceberCarta(cartaDoTurnoJogador);
+                _jogador.ReceberCarta(cartaDoTurnoCpu);
+                AguardarUsuarioApertarAlgumaTecla();
+                return;
             }
 
             if (cpuPossuiACartaSuperTrunfo)
             {
                 _tabuleiroJogoDisplay.ExibirMensagem("🥇 SUPER TRUNFO CPU venceu a rodada!");
+                _cpu.ReceberCarta(cartaDoTurnoCpu);
+                _cpu.ReceberCarta(cartaDoTurnoJogador);
+                AguardarUsuarioApertarAlgumaTecla();
+                return;
             }
 
             if (AtributoInput.Velocidade.Equals(atributoEscolhidoDoTurno))
