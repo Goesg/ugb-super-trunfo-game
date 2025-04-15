@@ -12,11 +12,11 @@ public class Baralho
 
     public Baralho()
     {
-        var _atributosCartasSuperTrunfoCarros = ObterAtributosCartas();
+        var _atributosCartasSuperTrunfoCarros = ObterAtributosDoArquivoJson();
         _atributosCartasSuperTrunfoCarros.ForEach((atributo) => _cartas.Add(new Carta(atributo)));
     }
 
-    private List<Atributos> ObterAtributosCartas()
+    private List<Atributos> ObterAtributosDoArquivoJson()
     {
         var atributosCarroJson = _gerenciadorDeArquivos.ObterConteudoArquivoPorNome(_nomeArquivoJsonAtributosCartasSuperTrunfo);
         return JsonSerializer.Deserialize<List<Atributos>>(atributosCarroJson)!;
@@ -31,7 +31,7 @@ public class Baralho
         }
     }
 
-    public (LinkedList<Carta> cartasJogador, LinkedList<Carta> cartasCpu) DistribuirEntreJogadores()
+    public (LinkedList<Carta> cartasJogador, LinkedList<Carta> cartasCpu) DistribuirCartasEntreJogadores()
     {
         LinkedList<Carta> jogador = new();
         LinkedList<Carta> cpu = new();

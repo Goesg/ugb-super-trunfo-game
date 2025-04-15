@@ -26,7 +26,7 @@ namespace ConsoleApp
             var baralho = new Baralho();
             baralho.Embaralhar();
 
-            var (cartasJogador, cartasCpu) = baralho.DistribuirEntreJogadores();
+            var (cartasJogador, cartasCpu) = baralho.DistribuirCartasEntreJogadores();
             _jogador = new Jogador("Aluno UGB", cartasJogador);
             _cpu = new Jogador("CPU", cartasCpu);
 
@@ -70,7 +70,7 @@ namespace ConsoleApp
 
             if (_ehVezDoJogador)
             {
-                int opcaoEscolhidaJogador = AguardarEscolhaOpcoesInput();
+                int opcaoEscolhidaJogador = AguardarUsuarioEscolherOpcao();
 
                 if (opcaoEscolhidaJogador == 6)
                 {
@@ -98,7 +98,7 @@ namespace ConsoleApp
             _ehVezDoJogador = !_ehVezDoJogador;
         }
 
-        public int AguardarEscolhaOpcoesInput()
+        public int AguardarUsuarioEscolherOpcao()
         {
             while (true)
             {
@@ -195,6 +195,7 @@ namespace ConsoleApp
                 return;
             }
 
+            //Qual atributo foi escolhido no turno
             if (AtributoInput.Velocidade.Equals(atributoEscolhidoDoTurno))
             {
                 VerificarQuemPossuiMaiorValor(atributoEscolhidoDoTurno, cartaDoTurnoJogador, cartaDoTurnoCpu);

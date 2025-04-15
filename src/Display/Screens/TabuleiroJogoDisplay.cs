@@ -37,7 +37,6 @@ public class TabuleiroJogoDisplay : Display
         string textoPlacar = $"Placar - {jogador.Nome}: {jogador.Cartas.Count} cartas  |  {cpu.Nome}: {cpu.Cartas.Count} cartas";
         var regiaoDoJogoConsole = _regioesTabuleiro.GetValueOrDefault(RegiaoTabuleiro.AreaDoJogo);
 
-
         TabuleiroRegiaoConsole.ExibirPlacar(textoPlacar);
     }
 
